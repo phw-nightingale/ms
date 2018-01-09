@@ -7,23 +7,6 @@ import java.util.List;
 
 public interface BaseMapper<T extends BaseEntity> {
 
-    /*static final String SQL_INSERT = ".insert";
-
-    static final String SQL_INSERT_LIST = ".insertList";
-
-    static final String SQL_DELETE_BY_PK = ".deleteByPrimaryKey";
-
-    static final String SQL_DELETE_BY_EXAMPLE = ".deleteByExample";
-
-    static final String SQL_SELECT_BY_PK = ".selectByPrimaryKey";
-
-    static final String SQL_SELECT_BY_EXAMPLE = ".selectByExample";
-
-    static final String SQL_UPDATE_BY_PK = ".updateByPrimaryKey";
-
-    static final String SQL_UPDATE_BY_EXAMPLE = ".updateByExample";*/
-
-
     /**
      * 根据主键查询一条记录
      * @param id

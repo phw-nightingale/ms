@@ -8,57 +8,42 @@ import cn.it.phw.ms.pojo.BaseExample;
 import cn.it.phw.ms.service.BaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Transactional
-public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     private static final Logger log = LoggerFactory.getLogger(BaseServiceImpl.class);
 
-    protected JsonResult jsonResult;
-    protected Map<String, Object> data;
+    JsonResult jsonResult;
+    Map<String, Object> data;
 
-    /*private Class<?> clazz;
-
-    private BaseExample example;*/
-
-    public BaseServiceImpl() {
+    BaseServiceImpl() {
 
         jsonResult = new JsonResult();
         data = new HashMap<>();
-
-        /*Type type = this.getClass().getGenericSuperclass();
-        if (type instanceof ParameterizedType) {
-            clazz = (Class<?>) ((ParameterizedType) type).getActualTypeArguments()[0];
-        } else {
-            clazz = Object.class;
-            log.warn("Get Generic Super Class Failed, Use Default Object Class");
-            throw new IllegalArgumentException("Get Generic Super Class Failed");
-        }
-        String exampleName = clazz.getSimpleName() + "Example";
-        log.info(clazz.getName());
-        try {
-            Class<?> exampleClass = Class.forName("cn.it.phw.ms.pojo." + exampleName);
-            example = (BaseExample) exampleClass.newInstance();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e) {
-            e.printStackTrace();
-        }*/
-
     }
 
-    @Autowired
-    private BaseMapper<T> baseMapper;
+    /**
+     * 获取对应的数据持久层
+     * 由业务类实现
+     *
+     * @return
+     */
+    public abstract BaseMapper<T> getBaseMapper();
 
     @Override
     public JsonResult selectByPrimaryKey(Object id) {
-        T item = baseMapper.selectByPrimaryKey(id);
+        if (id == null) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("参数错误");
+        }
+        T item = getBaseMapper().selectByPrimaryKey(id);
         if (item == null) {
             jsonResult.setMessage("无对应记录");
             jsonResult.setStatus(500);
@@ -74,7 +59,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     @Override
     public JsonResult selectByExample(BaseExample example) {
 
-        List<T> items = baseMapper.selectByExample(example);
+        List<T> items = getBaseMapper().selectByExample(example);
 
         if (items.size() == 0) {
             jsonResult.setMessage("无对应记录");
@@ -89,29 +74,98 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     }
 
     @Override
-    public JsonResult updateByPrimaryKey(Object id) {
+    public JsonResult updateByPrimaryKey(T item) {
+        if (item == null) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("错误：参数为空");
+        } else {
+            //更新属性
+            try {
+                Class<?> cls = item.getClass();
+                Field id_field = cls.getDeclaredField("id");
+                if (id_field == null) {
+                    jsonResult.setStatus(500);
+                    jsonResult.setMessage("错误：没有找到id字段");
+                } else {
+                    Object id = id_field.get(item);
+                    if (id == null) {
+                        jsonResult.setStatus(500);
+                        jsonResult.setMessage("错误：id值为空");
+                    }
+                    T oldItem = getBaseMapper().selectByPrimaryKey(id_field.get(item));
 
-        return null;
+                    Field[] fields = cls.getDeclaredFields();
+                    for (Field field : fields) {
+                        if (field.get(item) != null) {
+                            field.set(oldItem, field.get(item));
+                        }
+                    }
+
+                    getBaseMapper().updateByPrimaryKey(oldItem);
+
+                    jsonResult.setStatus(200);
+                    jsonResult.setMessage("更新成功");
+                }
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                e.printStackTrace();
+                jsonResult.setMessage("错误：" + e.getMessage());
+                jsonResult.setStatus(500);
+                return jsonResult;
+            }
+        }
+        return jsonResult;
     }
 
     @Override
     public JsonResult updateByExample(BaseExample example) {
-        return null;
+        if (example == null) {
+            jsonResult.setMessage("错误：参数为空");
+            jsonResult.setStatus(500);
+        } else {
+            getBaseMapper().updateByExample(example);
+            jsonResult.setStatus(200);
+            jsonResult.setMessage("更新成功");
+        }
+        return jsonResult;
     }
 
     @Override
     public JsonResult deleteByPrimaryKey(Object id) {
-        return null;
+        if (id == null) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("错误：参数为空");
+        } else {
+            getBaseMapper().deleteByPrimaryKey(id);
+            jsonResult.setStatus(200);
+            jsonResult.setMessage("删除成功");
+        }
+        return jsonResult;
     }
 
     @Override
     public JsonResult deleteByExample(BaseExample example) {
-        return null;
+        if (example == null) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("错误：参数为空");
+        } else {
+            getBaseMapper().deleteByExample(example);
+            jsonResult.setStatus(200);
+            jsonResult.setMessage("删除成功");
+        }
+        return jsonResult;
     }
 
     @Override
     public JsonResult insert(T item) {
-        return null;
+        if (item == null) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("错误：参数为空");
+        } else {
+            getBaseMapper().insert(item);
+            jsonResult.setStatus(200);
+            jsonResult.setMessage("添加成功");
+        }
+        return jsonResult;
     }
 
 }

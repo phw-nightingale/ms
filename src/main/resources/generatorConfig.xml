@@ -48,7 +48,7 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table schema="ms2" tableName="book" />
+        <!--<table schema="ms2" tableName="book" />
         <table schema="ms2" tableName="book_used_info" />
         <table schema="ms2" tableName="group_manager" />
         <table schema="ms2" tableName="learning_plan_column" />
@@ -62,7 +62,8 @@
         <table schema="ms2" tableName="user" />
         <table schema="ms2" tableName="resource" />
         <table schema="ms2" tableName="role" />
-        <table schema="ms2" tableName="permission" />
+        <table schema="ms2" tableName="permission" />-->
+        <table schema="ms2" tableName="resource" />
 
     </context>
 </generatorConfiguration>

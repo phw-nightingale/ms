@@ -1,6 +1,7 @@
 package cn.it.phw.ms.controller;
 
 import cn.it.phw.ms.common.JsonResult;
+import cn.it.phw.ms.pojo.Book;
 import cn.it.phw.ms.pojo.BookExample;
 import cn.it.phw.ms.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +15,37 @@ public class BookController extends BaseController {
     @Autowired
     private BookService bookService;
 
-    protected BookExample bookExample = new BookExample();
-
     @ResponseBody
     @GetMapping("/book/{id}")
-    public JsonResult selectBookByPrimaryKey(@PathVariable Integer id) {
+    public JsonResult findBookById(@PathVariable Integer id) {
+        return bookService.selectByPrimaryKey(id);
+    }
 
-        return bookService.selectBookByPrimaryKey(id);
+    @ResponseBody
+    @GetMapping("/books")
+    public JsonResult findAllBooks() {
+        return bookService.selectByExample(null);
     }
 
     @ResponseBody
     @GetMapping("/book")
-    public JsonResult selectBookByExample(@RequestParam Integer id) {
-        BookExample.Criteria criteria = bookExample.or();
+    public JsonResult findBookByExample(@RequestParam Integer id) {
+        BookExample example = new BookExample();
+        BookExample.Criteria criteria = example.or();
         criteria.andIdEqualTo(id);
-        return bookService.selectByExample(bookExample);
+        return bookService.selectByExample(example);
+    }
+
+    @ResponseBody
+    @PostMapping("/book")
+    public JsonResult updateBookById(Book book) {
+        return bookService.updateByPrimaryKey(book);
+    }
+
+    @ResponseBody
+    @DeleteMapping("/book/{id}")
+    public JsonResult deleteBookById(@PathVariable Integer id) {
+        return bookService.deleteByPrimaryKey(id);
     }
 
 }
