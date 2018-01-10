@@ -225,73 +225,73 @@ public class LearningPlanFormExample extends BaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameIsNull() {
-            addCriterion("onwer_name is null");
+        public Criteria andOwnerNameIsNull() {
+            addCriterion("owner_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameIsNotNull() {
-            addCriterion("onwer_name is not null");
+        public Criteria andOwnerNameIsNotNull() {
+            addCriterion("owner_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameEqualTo(String value) {
-            addCriterion("onwer_name =", value, "onwerName");
+        public Criteria andOwnerNameEqualTo(String value) {
+            addCriterion("owner_name =", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameNotEqualTo(String value) {
-            addCriterion("onwer_name <>", value, "onwerName");
+        public Criteria andOwnerNameNotEqualTo(String value) {
+            addCriterion("owner_name <>", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameGreaterThan(String value) {
-            addCriterion("onwer_name >", value, "onwerName");
+        public Criteria andOwnerNameGreaterThan(String value) {
+            addCriterion("owner_name >", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameGreaterThanOrEqualTo(String value) {
-            addCriterion("onwer_name >=", value, "onwerName");
+        public Criteria andOwnerNameGreaterThanOrEqualTo(String value) {
+            addCriterion("owner_name >=", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameLessThan(String value) {
-            addCriterion("onwer_name <", value, "onwerName");
+        public Criteria andOwnerNameLessThan(String value) {
+            addCriterion("owner_name <", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameLessThanOrEqualTo(String value) {
-            addCriterion("onwer_name <=", value, "onwerName");
+        public Criteria andOwnerNameLessThanOrEqualTo(String value) {
+            addCriterion("owner_name <=", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameLike(String value) {
-            addCriterion("onwer_name like", value, "onwerName");
+        public Criteria andOwnerNameLike(String value) {
+            addCriterion("owner_name like", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameNotLike(String value) {
-            addCriterion("onwer_name not like", value, "onwerName");
+        public Criteria andOwnerNameNotLike(String value) {
+            addCriterion("owner_name not like", value, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameIn(List<String> values) {
-            addCriterion("onwer_name in", values, "onwerName");
+        public Criteria andOwnerNameIn(List<String> values) {
+            addCriterion("owner_name in", values, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameNotIn(List<String> values) {
-            addCriterion("onwer_name not in", values, "onwerName");
+        public Criteria andOwnerNameNotIn(List<String> values) {
+            addCriterion("owner_name not in", values, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameBetween(String value1, String value2) {
-            addCriterion("onwer_name between", value1, value2, "onwerName");
+        public Criteria andOwnerNameBetween(String value1, String value2) {
+            addCriterion("owner_name between", value1, value2, "ownerName");
             return (Criteria) this;
         }
 
-        public Criteria andOnwerNameNotBetween(String value1, String value2) {
-            addCriterion("onwer_name not between", value1, value2, "onwerName");
+        public Criteria andOwnerNameNotBetween(String value1, String value2) {
+            addCriterion("owner_name not between", value1, value2, "ownerName");
             return (Criteria) this;
         }
 

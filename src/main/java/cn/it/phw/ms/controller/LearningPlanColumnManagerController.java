@@ -21,7 +21,7 @@ public class LearningPlanColumnManagerController extends BaseController {
     @GetMapping("/column-manager")
     public JsonResult findLearningPlanColumnManagerByFormId(@RequestParam Integer userId) {
         LearningPlanColumnManagerExample.Criteria criteria = example.or();
-        criteria.andLearningplanformIdEqualTo(userId);
+        criteria.andLearningPlanFormIdEqualTo(userId);
         return learningPlanColumnManagerService.selectByExample(example);
     }
 

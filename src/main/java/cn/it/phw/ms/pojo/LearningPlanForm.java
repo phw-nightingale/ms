@@ -7,7 +7,7 @@ public class LearningPlanForm extends BaseEntity {
 
     private Integer ownerId;
 
-    private String onwerName;
+    private String ownerName;
 
     private Integer status;
 
@@ -33,12 +33,12 @@ public class LearningPlanForm extends BaseEntity {
         this.ownerId = ownerId;
     }
 
-    public String getOnwerName() {
-        return onwerName;
+    public String getOwnerName() {
+        return ownerName;
     }
 
-    public void setOnwerName(String onwerName) {
-        this.onwerName = onwerName == null ? null : onwerName.trim();
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName == null ? null : ownerName.trim();
     }
 
     public Integer getStatus() {

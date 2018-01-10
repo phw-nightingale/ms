@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="cn.it.phw.ms.pojo.LearningPlanForm">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
-    <result column="onwer_name" jdbcType="VARCHAR" property="onwerName" />
+    <result column="owner_name" jdbcType="VARCHAR" property="ownerName" />
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="is_share" jdbcType="INTEGER" property="isShare" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, owner_id, onwer_name, status, is_share, create_time, approve_content
+    id, owner_id, owner_name, status, is_share, create_time, approve_content
   </sql>
   <select id="selectByExample" parameterType="cn.it.phw.ms.pojo.LearningPlanFormExample" resultMap="BaseResultMap">
     select
@@ -102,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.it.phw.ms.pojo.LearningPlanForm">
-    insert into learning_plan_form (id, owner_id, onwer_name, 
+    insert into learning_plan_form (id, owner_id, owner_name, 
       status, is_share, create_time, 
       approve_content)
-    values (#{id,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, #{onwerName,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, #{ownerName,jdbcType=VARCHAR}, 
       #{status,jdbcType=INTEGER}, #{isShare,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{approveContent,jdbcType=VARCHAR})
   </insert>
@@ -118,8 +118,8 @@
       <if test="ownerId != null">
         owner_id,
       </if>
-      <if test="onwerName != null">
-        onwer_name,
+      <if test="ownerName != null">
+        owner_name,
       </if>
       <if test="status != null">
         status,
@@ -141,8 +141,8 @@
       <if test="ownerId != null">
         #{ownerId,jdbcType=INTEGER},
       </if>
-      <if test="onwerName != null">
-        #{onwerName,jdbcType=VARCHAR},
+      <if test="ownerName != null">
+        #{ownerName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -173,8 +173,8 @@
       <if test="record.ownerId != null">
         owner_id = #{record.ownerId,jdbcType=INTEGER},
       </if>
-      <if test="record.onwerName != null">
-        onwer_name = #{record.onwerName,jdbcType=VARCHAR},
+      <if test="record.ownerName != null">
+        owner_name = #{record.ownerName,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
@@ -197,7 +197,7 @@
     update learning_plan_form
     set id = #{record.id,jdbcType=INTEGER},
       owner_id = #{record.ownerId,jdbcType=INTEGER},
-      onwer_name = #{record.onwerName,jdbcType=VARCHAR},
+      owner_name = #{record.ownerName,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
       is_share = #{record.isShare,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -212,8 +212,8 @@
       <if test="ownerId != null">
         owner_id = #{ownerId,jdbcType=INTEGER},
       </if>
-      <if test="onwerName != null">
-        onwer_name = #{onwerName,jdbcType=VARCHAR},
+      <if test="ownerName != null">
+        owner_name = #{ownerName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
@@ -233,7 +233,7 @@
   <update id="updateByPrimaryKey" parameterType="cn.it.phw.ms.pojo.LearningPlanForm">
     update learning_plan_form
     set owner_id = #{ownerId,jdbcType=INTEGER},
-      onwer_name = #{onwerName,jdbcType=VARCHAR},
+      owner_name = #{ownerName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
       is_share = #{isShare,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
