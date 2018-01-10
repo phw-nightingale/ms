@@ -32,4 +32,16 @@ public class PermissionController extends BaseController {
         return permissionService.selectByPrimaryKey(id);
     }
 
+    @ResponseBody
+    @DeleteMapping("/permission/{id}")
+    public JsonResult deletePermissionById(@PathVariable Integer id) {
+        return permissionService.deleteByPrimaryKey(id);
+    }
+
+    @ResponseBody
+    @PutMapping("/permission")
+    public JsonResult insertPermission(Permission permission) {
+        return permissionService.insert(permission);
+    }
+
 }

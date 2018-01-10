@@ -48,8 +48,14 @@ public class UserController extends BaseController {
 
     @ResponseBody
     @PutMapping("/user")
-    public JsonResult insertUser(User user) {
-        return userService.insert(user);
+    public JsonResult insertUser(User user, HttpServletRequest request) {
+        return userService.insertUser(user, request.getAttribute(AppContext.KEY_ID));
+    }
+
+    @ResponseBody
+    @PutMapping("/user/register")
+    public JsonResult doRegisterUser(User user) {
+        return userService.doRegister(user);
     }
 
     @ResponseBody

@@ -1,5 +1,7 @@
 package cn.it.phw.ms.controller;
 
+import cn.it.phw.ms.common.Authority;
+import cn.it.phw.ms.common.AuthorityType;
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.pojo.SystemMessage;
 import cn.it.phw.ms.pojo.SystemMessageExample;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Authority
 @RequestMapping("/ms")
 public class SystemMessageController extends BaseController {
 
@@ -16,6 +19,7 @@ public class SystemMessageController extends BaseController {
     private SystemMessageService systemMessageService;
 
     @ResponseBody
+    @Authority(AuthorityType.NoValidate)
     @GetMapping("/msg/lasted")
     public JsonResult findLastedMessage() {
         SystemMessageExample example = new SystemMessageExample();

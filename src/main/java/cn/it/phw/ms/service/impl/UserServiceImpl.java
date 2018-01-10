@@ -4,10 +4,13 @@ import cn.it.phw.ms.common.*;
 import cn.it.phw.ms.dao.BaseMapper;
 import cn.it.phw.ms.dao.UserMapper;
 import cn.it.phw.ms.pojo.BaseExample;
+import cn.it.phw.ms.pojo.SystemMessage;
 import cn.it.phw.ms.pojo.User;
 import cn.it.phw.ms.pojo.UserExample;
 import cn.it.phw.ms.service.UserService;
 import com.google.gson.Gson;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.HashOperations;
@@ -22,6 +25,8 @@ import java.util.List;
 @Service
 @Transactional
 public class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+
+    private static final Logger log = LoggerFactory.getLogger(UserServiceImpl.class);
 
     @Autowired
     private UserMapper userMapper;
@@ -101,6 +106,35 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             jsonResult.setStatus(500);
             jsonResult.setMessage("Login First Please");
         }
+
+        return jsonResult;
+    }
+
+    @Override
+    public JsonResult doRegister(User user) {
+
+
+        return null;
+    }
+
+    @Override
+    public JsonResult insertUser(User user, Object adminId) {
+        //从redis里获取到当前管理员的数据
+        Object adminJson = redisTemplate.opsForHash().get(AppContext.USER_CACHE, adminId);
+        User admin = gson.fromJson((String) adminJson, User.class);
+
+        user.setCreateTime(new Date(System.currentTimeMillis()));
+        user.setCreatorId(admin.getId());
+        user.setCreatorName(admin.getUsername());
+        user.setSalt(System.currentTimeMillis() + "");
+        user.setPassword(Md5Utils.MD5Encode("123456" + user.getSalt(), "UTF-8", true));
+
+        userMapper.insert(user);
+
+        jsonResult.setStatus(200);
+        jsonResult.setMessage("添加成功");
+        data.put(AppContext.KEY_DATA, user);
+        jsonResult.setData(data);
 
         return jsonResult;
     }

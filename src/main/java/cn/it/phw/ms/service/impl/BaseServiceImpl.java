@@ -82,11 +82,15 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
             //更新属性
             try {
                 Class<?> cls = item.getClass();
+
                 Field id_field = cls.getDeclaredField("id");
+
                 if (id_field == null) {
                     jsonResult.setStatus(500);
                     jsonResult.setMessage("错误：没有找到id字段");
                 } else {
+                    //设置private属性的可访问性
+                    id_field.setAccessible(true);
                     Object id = id_field.get(item);
                     if (id == null) {
                         jsonResult.setStatus(500);
@@ -96,6 +100,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
 
                     Field[] fields = cls.getDeclaredFields();
                     for (Field field : fields) {
+                        field.setAccessible(true);
                         if (field.get(item) != null) {
                             field.set(oldItem, field.get(item));
                         }

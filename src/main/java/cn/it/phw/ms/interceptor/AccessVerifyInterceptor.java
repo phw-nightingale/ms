@@ -17,6 +17,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -48,10 +49,10 @@ public class AccessVerifyInterceptor implements HandlerInterceptor {
             boolean isClassAnnotation = clazz.isAnnotationPresent(Authority.class);
             boolean isMethodAnnotation = method.isAnnotationPresent(Authority.class);
             Authority authority = null;
-            if (isClassAnnotation) {
-                authority = clazz.getAnnotation(Authority.class);
-            } else if (isMethodAnnotation) {
+            if (isMethodAnnotation) {
                 authority = method.getAnnotation(Authority.class);
+            } else if (isClassAnnotation) {
+                authority = clazz.getAnnotation(Authority.class);
             } else {
                 authority = superClazz.getAnnotation(Authority.class);
             }
@@ -63,11 +64,11 @@ public class AccessVerifyInterceptor implements HandlerInterceptor {
                         exportJsonResult(httpServletResponse, loginResult);
                         return false;
                     }
-                    JsonResult actionResult = verifyAction();
-                    if (true) {
+                    /*JsonResult actionResult = verifyAction();
+                    if (actionResult.getStatus() == 500) {
                         exportJsonResult(httpServletResponse, actionResult);
                         return false;
-                    }
+                    }*/
                     break;
                 }
                 case NoAuthority: {
@@ -166,7 +167,7 @@ public class AccessVerifyInterceptor implements HandlerInterceptor {
      */
     private JsonResult verifyAction() {
 
-        return null;
+        return new JsonResult();
     }
 
 }

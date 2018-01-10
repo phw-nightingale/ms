@@ -15,33 +15,34 @@ public class LearningPlanFormController extends BaseController {
     private LearningPlanFormService learningPlanFormService;
 
     @ResponseBody
-    @PutMapping("/learning-plan-form")
+    @PutMapping("/plan-form")
     public JsonResult insertLearningPlanForm(LearningPlanForm learningPlanForm) {
         return learningPlanFormService.insert(learningPlanForm);
     }
 
     @ResponseBody
-    @DeleteMapping("/learning-plan-form/{id}")
+    @DeleteMapping("/plan-form/{id}")
     public JsonResult deleteLearningPlanFormById(@PathVariable Integer id) {
         return learningPlanFormService.deleteByPrimaryKey(id);
     }
 
     @ResponseBody
-    @PostMapping("/learning-plan-form")
+    @PostMapping("/plan-form")
     public JsonResult updateLearningPlanFormById(LearningPlanForm learningPlanForm) {
         return learningPlanFormService.updateByPrimaryKey(learningPlanForm);
     }
 
     @ResponseBody
-    @GetMapping("/learning-plan-form/{id}")
+    @GetMapping("/plan-form/{id}")
     public JsonResult findLearningPlanFormById(@PathVariable Integer id) {
         return learningPlanFormService.selectByPrimaryKey(id);
     }
 
     @ResponseBody
-    @GetMapping("/learning-plan-forms")
+    @GetMapping("/plan-forms")
     public JsonResult findAllLearningPlanForms() {
         return learningPlanFormService.selectByExample(null);
     }
+
 
 }

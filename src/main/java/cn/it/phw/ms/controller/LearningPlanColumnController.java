@@ -21,13 +21,13 @@ public class LearningPlanColumnController extends BaseController {
     }
 
     @ResponseBody
-    @PostMapping("/form-columns")
+    @PostMapping("/form-column")
     public JsonResult updateLearningPlanColumnById(LearningPlanColumn column) {
         return learningPlanColumnService.updateByPrimaryKey(column);
     }
 
     @ResponseBody
-    @DeleteMapping("/form-columns/{id}")
+    @DeleteMapping("/form-column/{id}")
     public JsonResult deleteLearningPlanColumnById(@PathVariable Integer id) {
         return learningPlanColumnService.deleteByPrimaryKey(id);
     }
@@ -36,12 +36,6 @@ public class LearningPlanColumnController extends BaseController {
     @PutMapping("/form-column")
     public JsonResult insertLearningPlanColumn(LearningPlanColumn column) {
         return learningPlanColumnService.insert(column);
-    }
-
-    @ResponseBody
-    @GetMapping("/form-columns")
-    public JsonResult findAllLearningPlanColumns() {
-        return learningPlanColumnService.selectByExample(null);
     }
 
 }

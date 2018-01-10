@@ -3,9 +3,12 @@
 <mapper namespace="cn.it.phw.ms.dao.LearningPlanFormMapper">
   <resultMap id="BaseResultMap" type="cn.it.phw.ms.pojo.LearningPlanForm">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="owner_id" jdbcType="INTEGER" property="ownerId" />
+    <result column="onwer_name" jdbcType="VARCHAR" property="onwerName" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="isshare" jdbcType="INTEGER" property="isshare" />
+    <result column="is_share" jdbcType="INTEGER" property="isShare" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="approve_content" jdbcType="VARCHAR" property="approveContent" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, status, isshare
+    id, owner_id, onwer_name, status, is_share, create_time, approve_content
   </sql>
   <select id="selectByExample" parameterType="cn.it.phw.ms.pojo.LearningPlanFormExample" resultMap="BaseResultMap">
     select
@@ -99,10 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.it.phw.ms.pojo.LearningPlanForm">
-    insert into learning_plan_form (id, user_id, status, 
-      isshare)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
-      #{isshare,jdbcType=INTEGER})
+    insert into learning_plan_form (id, owner_id, onwer_name, 
+      status, is_share, create_time, 
+      approve_content)
+    values (#{id,jdbcType=INTEGER}, #{ownerId,jdbcType=INTEGER}, #{onwerName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{isShare,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{approveContent,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.it.phw.ms.pojo.LearningPlanForm">
     insert into learning_plan_form
@@ -110,28 +115,46 @@
       <if test="id != null">
         id,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="ownerId != null">
+        owner_id,
+      </if>
+      <if test="onwerName != null">
+        onwer_name,
       </if>
       <if test="status != null">
         status,
       </if>
-      <if test="isshare != null">
-        isshare,
+      <if test="isShare != null">
+        is_share,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="approveContent != null">
+        approve_content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="ownerId != null">
+        #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="onwerName != null">
+        #{onwerName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="isshare != null">
-        #{isshare,jdbcType=INTEGER},
+      <if test="isShare != null">
+        #{isShare,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveContent != null">
+        #{approveContent,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -147,14 +170,23 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.userId != null">
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.ownerId != null">
+        owner_id = #{record.ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="record.onwerName != null">
+        onwer_name = #{record.onwerName,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
         status = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.isshare != null">
-        isshare = #{record.isshare,jdbcType=INTEGER},
+      <if test="record.isShare != null">
+        is_share = #{record.isShare,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.approveContent != null">
+        approve_content = #{record.approveContent,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,9 +196,12 @@
   <update id="updateByExample" parameterType="map">
     update learning_plan_form
     set id = #{record.id,jdbcType=INTEGER},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      owner_id = #{record.ownerId,jdbcType=INTEGER},
+      onwer_name = #{record.onwerName,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=INTEGER},
-      isshare = #{record.isshare,jdbcType=INTEGER}
+      is_share = #{record.isShare,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      approve_content = #{record.approveContent,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,23 +209,35 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.it.phw.ms.pojo.LearningPlanForm">
     update learning_plan_form
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="ownerId != null">
+        owner_id = #{ownerId,jdbcType=INTEGER},
+      </if>
+      <if test="onwerName != null">
+        onwer_name = #{onwerName,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
         status = #{status,jdbcType=INTEGER},
       </if>
-      <if test="isshare != null">
-        isshare = #{isshare,jdbcType=INTEGER},
+      <if test="isShare != null">
+        is_share = #{isShare,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="approveContent != null">
+        approve_content = #{approveContent,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.it.phw.ms.pojo.LearningPlanForm">
     update learning_plan_form
-    set user_id = #{userId,jdbcType=INTEGER},
+    set owner_id = #{ownerId,jdbcType=INTEGER},
+      onwer_name = #{onwerName,jdbcType=VARCHAR},
       status = #{status,jdbcType=INTEGER},
-      isshare = #{isshare,jdbcType=INTEGER}
+      is_share = #{isShare,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      approve_content = #{approveContent,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

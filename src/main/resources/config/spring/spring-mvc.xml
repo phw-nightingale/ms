@@ -17,12 +17,12 @@
         <mvc:mapping path="/**"/>
     </mvc:cors>-->
     
-    <!--<mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="cn.it.phw.ms.interceptor.AccessTokenVerifyInterceptor"/>
+            <bean class="cn.it.phw.ms.interceptor.AccessVerifyInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 
 
     <!-- 上传文件 -->

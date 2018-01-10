@@ -63,7 +63,7 @@
         <table schema="ms2" tableName="resource" />
         <table schema="ms2" tableName="role" />
         <table schema="ms2" tableName="permission" />-->
-        <table schema="ms2" tableName="resource" />
+        <table schema="ms2" tableName="learning_plan_form" />
 
     </context>
 </generatorConfiguration>
