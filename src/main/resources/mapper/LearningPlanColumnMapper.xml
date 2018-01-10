@@ -3,7 +3,7 @@
 <mapper namespace="cn.it.phw.ms.dao.LearningPlanColumnMapper">
   <resultMap id="BaseResultMap" type="cn.it.phw.ms.pojo.LearningPlanColumn">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="learningplancolumn_name" jdbcType="VARCHAR" property="learningplancolumnName" />
+    <result column="learning_plan_column_name" jdbcType="VARCHAR" property="learningPlanColumnName" />
     <result column="learningplancolumn_desc" jdbcType="VARCHAR" property="learningplancolumnDesc" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, learningplancolumn_name, learningplancolumn_desc
+    id, learning_plan_column_name, learningplancolumn_desc
   </sql>
   <select id="selectByExample" parameterType="cn.it.phw.ms.pojo.LearningPlanColumnExample" resultMap="BaseResultMap">
     select
@@ -98,9 +98,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.it.phw.ms.pojo.LearningPlanColumn">
-    insert into learning_plan_column (id, learningplancolumn_name, learningplancolumn_desc
+    insert into learning_plan_column (id, learning_plan_column_name, learningplancolumn_desc
       )
-    values (#{id,jdbcType=INTEGER}, #{learningplancolumnName,jdbcType=VARCHAR}, #{learningplancolumnDesc,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{learningPlanColumnName,jdbcType=VARCHAR}, #{learningplancolumnDesc,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.it.phw.ms.pojo.LearningPlanColumn">
@@ -109,8 +109,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="learningplancolumnName != null">
-        learningplancolumn_name,
+      <if test="learningPlanColumnName != null">
+        learning_plan_column_name,
       </if>
       <if test="learningplancolumnDesc != null">
         learningplancolumn_desc,
@@ -120,8 +120,8 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="learningplancolumnName != null">
-        #{learningplancolumnName,jdbcType=VARCHAR},
+      <if test="learningPlanColumnName != null">
+        #{learningPlanColumnName,jdbcType=VARCHAR},
       </if>
       <if test="learningplancolumnDesc != null">
         #{learningplancolumnDesc,jdbcType=VARCHAR},
@@ -140,8 +140,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.learningplancolumnName != null">
-        learningplancolumn_name = #{record.learningplancolumnName,jdbcType=VARCHAR},
+      <if test="record.learningPlanColumnName != null">
+        learning_plan_column_name = #{record.learningPlanColumnName,jdbcType=VARCHAR},
       </if>
       <if test="record.learningplancolumnDesc != null">
         learningplancolumn_desc = #{record.learningplancolumnDesc,jdbcType=VARCHAR},
@@ -154,7 +154,7 @@
   <update id="updateByExample" parameterType="map">
     update learning_plan_column
     set id = #{record.id,jdbcType=INTEGER},
-      learningplancolumn_name = #{record.learningplancolumnName,jdbcType=VARCHAR},
+      learning_plan_column_name = #{record.learningPlanColumnName,jdbcType=VARCHAR},
       learningplancolumn_desc = #{record.learningplancolumnDesc,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -163,8 +163,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.it.phw.ms.pojo.LearningPlanColumn">
     update learning_plan_column
     <set>
-      <if test="learningplancolumnName != null">
-        learningplancolumn_name = #{learningplancolumnName,jdbcType=VARCHAR},
+      <if test="learningPlanColumnName != null">
+        learning_plan_column_name = #{learningPlanColumnName,jdbcType=VARCHAR},
       </if>
       <if test="learningplancolumnDesc != null">
         learningplancolumn_desc = #{learningplancolumnDesc,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.it.phw.ms.pojo.LearningPlanColumn">
     update learning_plan_column
-    set learningplancolumn_name = #{learningplancolumnName,jdbcType=VARCHAR},
+    set learning_plan_column_name = #{learningPlanColumnName,jdbcType=VARCHAR},
       learningplancolumn_desc = #{learningplancolumnDesc,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

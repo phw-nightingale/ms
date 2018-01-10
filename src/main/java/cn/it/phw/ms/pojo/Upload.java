@@ -5,15 +5,15 @@ import java.util.Date;
 public class Upload extends BaseEntity {
     private Integer id;
 
-    private String filename;
+    private String fileName;
 
     private String image;
 
-    private String contenttype;
+    private String contentType;
 
     private String url;
 
-    private String localpath;
+    private String localPath;
 
     private Integer downloadtime;
 
@@ -33,12 +33,12 @@ public class Upload extends BaseEntity {
         this.id = id;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename == null ? null : filename.trim();
+    public void setFileName(String fileName) {
+        this.fileName = fileName == null ? null : fileName.trim();
     }
 
     public String getImage() {
@@ -49,12 +49,12 @@ public class Upload extends BaseEntity {
         this.image = image == null ? null : image.trim();
     }
 
-    public String getContenttype() {
-        return contenttype;
+    public String getContentType() {
+        return contentType;
     }
 
-    public void setContenttype(String contenttype) {
-        this.contenttype = contenttype == null ? null : contenttype.trim();
+    public void setContentType(String contentType) {
+        this.contentType = contentType == null ? null : contentType.trim();
     }
 
     public String getUrl() {
@@ -65,12 +65,12 @@ public class Upload extends BaseEntity {
         this.url = url == null ? null : url.trim();
     }
 
-    public String getLocalpath() {
-        return localpath;
+    public String getLocalPath() {
+        return localPath;
     }
 
-    public void setLocalpath(String localpath) {
-        this.localpath = localpath == null ? null : localpath.trim();
+    public void setLocalPath(String localPath) {
+        this.localPath = localPath == null ? null : localPath.trim();
     }
 
     public Integer getDownloadtime() {

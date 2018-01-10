@@ -3,11 +3,11 @@ package cn.it.phw.ms.pojo;
 public class LearningPlanColumnManager extends BaseEntity {
     private Integer id;
 
-    private Integer learningplanformId;
+    private Integer learningPlanFormId;
 
-    private Integer learningplancolumnId;
+    private Integer learningPlanColumnId;
 
-    private String learningplancolumnContent;
+    private String learningPlanColumnContent;
 
     public Integer getId() {
         return id;
@@ -17,27 +17,27 @@ public class LearningPlanColumnManager extends BaseEntity {
         this.id = id;
     }
 
-    public Integer getLearningplanformId() {
-        return learningplanformId;
+    public Integer getLearningPlanFormId() {
+        return learningPlanFormId;
     }
 
-    public void setLearningplanformId(Integer learningplanformId) {
-        this.learningplanformId = learningplanformId;
+    public void setLearningPlanFormId(Integer learningPlanFormId) {
+        this.learningPlanFormId = learningPlanFormId;
     }
 
-    public Integer getLearningplancolumnId() {
-        return learningplancolumnId;
+    public Integer getLearningPlanColumnId() {
+        return learningPlanColumnId;
     }
 
-    public void setLearningplancolumnId(Integer learningplancolumnId) {
-        this.learningplancolumnId = learningplancolumnId;
+    public void setLearningPlanColumnId(Integer learningPlanColumnId) {
+        this.learningPlanColumnId = learningPlanColumnId;
     }
 
-    public String getLearningplancolumnContent() {
-        return learningplancolumnContent;
+    public String getLearningPlanColumnContent() {
+        return learningPlanColumnContent;
     }
 
-    public void setLearningplancolumnContent(String learningplancolumnContent) {
-        this.learningplancolumnContent = learningplancolumnContent == null ? null : learningplancolumnContent.trim();
+    public void setLearningPlanColumnContent(String learningPlanColumnContent) {
+        this.learningPlanColumnContent = learningPlanColumnContent == null ? null : learningPlanColumnContent.trim();
     }
 }

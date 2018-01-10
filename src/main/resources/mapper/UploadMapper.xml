@@ -3,11 +3,11 @@
 <mapper namespace="cn.it.phw.ms.dao.UploadMapper">
   <resultMap id="BaseResultMap" type="cn.it.phw.ms.pojo.Upload">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="file_name" jdbcType="VARCHAR" property="fileName" />
     <result column="image" jdbcType="VARCHAR" property="image" />
-    <result column="contenttype" jdbcType="VARCHAR" property="contenttype" />
+    <result column="content_type" jdbcType="VARCHAR" property="contentType" />
     <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="localpath" jdbcType="VARCHAR" property="localpath" />
+    <result column="local_path" jdbcType="VARCHAR" property="localPath" />
     <result column="downloadtime" jdbcType="INTEGER" property="downloadtime" />
     <result column="upload_user_id" jdbcType="INTEGER" property="uploadUserId" />
     <result column="upload_username" jdbcType="VARCHAR" property="uploadUsername" />
@@ -73,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, filename, image, contenttype, url, localpath, downloadtime, upload_user_id, upload_username, 
-    create_time, visiable
+    id, file_name, image, content_type, url, local_path, downloadtime, upload_user_id, 
+    upload_username, create_time, visiable
   </sql>
   <select id="selectByExample" parameterType="cn.it.phw.ms.pojo.UploadExample" resultMap="BaseResultMap">
     select
@@ -107,12 +107,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="cn.it.phw.ms.pojo.Upload">
-    insert into upload (id, filename, image, 
-      contenttype, url, localpath, 
+    insert into upload (id, file_name, image, 
+      content_type, url, local_path, 
       downloadtime, upload_user_id, upload_username, 
       create_time, visiable)
-    values (#{id,jdbcType=INTEGER}, #{filename,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
-      #{contenttype,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{localpath,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{contentType,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{localPath,jdbcType=VARCHAR}, 
       #{downloadtime,jdbcType=INTEGER}, #{uploadUserId,jdbcType=INTEGER}, #{uploadUsername,jdbcType=VARCHAR}, 
       #{createTime,jdbcType=TIMESTAMP}, #{visiable,jdbcType=INTEGER})
   </insert>
@@ -122,20 +122,20 @@
       <if test="id != null">
         id,
       </if>
-      <if test="filename != null">
-        filename,
+      <if test="fileName != null">
+        file_name,
       </if>
       <if test="image != null">
         image,
       </if>
-      <if test="contenttype != null">
-        contenttype,
+      <if test="contentType != null">
+        content_type,
       </if>
       <if test="url != null">
         url,
       </if>
-      <if test="localpath != null">
-        localpath,
+      <if test="localPath != null">
+        local_path,
       </if>
       <if test="downloadtime != null">
         downloadtime,
@@ -157,20 +157,20 @@
       <if test="id != null">
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="filename != null">
-        #{filename,jdbcType=VARCHAR},
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
       </if>
       <if test="image != null">
         #{image,jdbcType=VARCHAR},
       </if>
-      <if test="contenttype != null">
-        #{contenttype,jdbcType=VARCHAR},
+      <if test="contentType != null">
+        #{contentType,jdbcType=VARCHAR},
       </if>
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="localpath != null">
-        #{localpath,jdbcType=VARCHAR},
+      <if test="localPath != null">
+        #{localPath,jdbcType=VARCHAR},
       </if>
       <if test="downloadtime != null">
         #{downloadtime,jdbcType=INTEGER},
@@ -201,20 +201,20 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.filename != null">
-        filename = #{record.filename,jdbcType=VARCHAR},
+      <if test="record.fileName != null">
+        file_name = #{record.fileName,jdbcType=VARCHAR},
       </if>
       <if test="record.image != null">
         image = #{record.image,jdbcType=VARCHAR},
       </if>
-      <if test="record.contenttype != null">
-        contenttype = #{record.contenttype,jdbcType=VARCHAR},
+      <if test="record.contentType != null">
+        content_type = #{record.contentType,jdbcType=VARCHAR},
       </if>
       <if test="record.url != null">
         url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.localpath != null">
-        localpath = #{record.localpath,jdbcType=VARCHAR},
+      <if test="record.localPath != null">
+        local_path = #{record.localPath,jdbcType=VARCHAR},
       </if>
       <if test="record.downloadtime != null">
         downloadtime = #{record.downloadtime,jdbcType=INTEGER},
@@ -239,11 +239,11 @@
   <update id="updateByExample" parameterType="map">
     update upload
     set id = #{record.id,jdbcType=INTEGER},
-      filename = #{record.filename,jdbcType=VARCHAR},
+      file_name = #{record.fileName,jdbcType=VARCHAR},
       image = #{record.image,jdbcType=VARCHAR},
-      contenttype = #{record.contenttype,jdbcType=VARCHAR},
+      content_type = #{record.contentType,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
-      localpath = #{record.localpath,jdbcType=VARCHAR},
+      local_path = #{record.localPath,jdbcType=VARCHAR},
       downloadtime = #{record.downloadtime,jdbcType=INTEGER},
       upload_user_id = #{record.uploadUserId,jdbcType=INTEGER},
       upload_username = #{record.uploadUsername,jdbcType=VARCHAR},
@@ -256,20 +256,20 @@
   <update id="updateByPrimaryKeySelective" parameterType="cn.it.phw.ms.pojo.Upload">
     update upload
     <set>
-      <if test="filename != null">
-        filename = #{filename,jdbcType=VARCHAR},
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
       </if>
       <if test="image != null">
         image = #{image,jdbcType=VARCHAR},
       </if>
-      <if test="contenttype != null">
-        contenttype = #{contenttype,jdbcType=VARCHAR},
+      <if test="contentType != null">
+        content_type = #{contentType,jdbcType=VARCHAR},
       </if>
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="localpath != null">
-        localpath = #{localpath,jdbcType=VARCHAR},
+      <if test="localPath != null">
+        local_path = #{localPath,jdbcType=VARCHAR},
       </if>
       <if test="downloadtime != null">
         downloadtime = #{downloadtime,jdbcType=INTEGER},
@@ -291,11 +291,11 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.it.phw.ms.pojo.Upload">
     update upload
-    set filename = #{filename,jdbcType=VARCHAR},
+    set file_name = #{fileName,jdbcType=VARCHAR},
       image = #{image,jdbcType=VARCHAR},
-      contenttype = #{contenttype,jdbcType=VARCHAR},
+      content_type = #{contentType,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
-      localpath = #{localpath,jdbcType=VARCHAR},
+      local_path = #{localPath,jdbcType=VARCHAR},
       downloadtime = #{downloadtime,jdbcType=INTEGER},
       upload_user_id = #{uploadUserId,jdbcType=INTEGER},
       upload_username = #{uploadUsername,jdbcType=VARCHAR},

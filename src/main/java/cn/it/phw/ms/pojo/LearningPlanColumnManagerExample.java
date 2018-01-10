@@ -164,123 +164,123 @@ public class LearningPlanColumnManagerExample extends BaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdIsNull() {
-            addCriterion("learningplanform_id is null");
+        public Criteria andLearningPlanFormIdIsNull() {
+            addCriterion("learning_plan_form_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdIsNotNull() {
-            addCriterion("learningplanform_id is not null");
+        public Criteria andLearningPlanFormIdIsNotNull() {
+            addCriterion("learning_plan_form_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdEqualTo(Integer value) {
-            addCriterion("learningplanform_id =", value, "learningplanformId");
+        public Criteria andLearningPlanFormIdEqualTo(Integer value) {
+            addCriterion("learning_plan_form_id =", value, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdNotEqualTo(Integer value) {
-            addCriterion("learningplanform_id <>", value, "learningplanformId");
+        public Criteria andLearningPlanFormIdNotEqualTo(Integer value) {
+            addCriterion("learning_plan_form_id <>", value, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdGreaterThan(Integer value) {
-            addCriterion("learningplanform_id >", value, "learningplanformId");
+        public Criteria andLearningPlanFormIdGreaterThan(Integer value) {
+            addCriterion("learning_plan_form_id >", value, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("learningplanform_id >=", value, "learningplanformId");
+        public Criteria andLearningPlanFormIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("learning_plan_form_id >=", value, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdLessThan(Integer value) {
-            addCriterion("learningplanform_id <", value, "learningplanformId");
+        public Criteria andLearningPlanFormIdLessThan(Integer value) {
+            addCriterion("learning_plan_form_id <", value, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdLessThanOrEqualTo(Integer value) {
-            addCriterion("learningplanform_id <=", value, "learningplanformId");
+        public Criteria andLearningPlanFormIdLessThanOrEqualTo(Integer value) {
+            addCriterion("learning_plan_form_id <=", value, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdIn(List<Integer> values) {
-            addCriterion("learningplanform_id in", values, "learningplanformId");
+        public Criteria andLearningPlanFormIdIn(List<Integer> values) {
+            addCriterion("learning_plan_form_id in", values, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdNotIn(List<Integer> values) {
-            addCriterion("learningplanform_id not in", values, "learningplanformId");
+        public Criteria andLearningPlanFormIdNotIn(List<Integer> values) {
+            addCriterion("learning_plan_form_id not in", values, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdBetween(Integer value1, Integer value2) {
-            addCriterion("learningplanform_id between", value1, value2, "learningplanformId");
+        public Criteria andLearningPlanFormIdBetween(Integer value1, Integer value2) {
+            addCriterion("learning_plan_form_id between", value1, value2, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplanformIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("learningplanform_id not between", value1, value2, "learningplanformId");
+        public Criteria andLearningPlanFormIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("learning_plan_form_id not between", value1, value2, "learningPlanFormId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdIsNull() {
-            addCriterion("learningplancolumn_id is null");
+        public Criteria andLearningPlanColumnIdIsNull() {
+            addCriterion("learning_plan_column_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdIsNotNull() {
-            addCriterion("learningplancolumn_id is not null");
+        public Criteria andLearningPlanColumnIdIsNotNull() {
+            addCriterion("learning_plan_column_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdEqualTo(Integer value) {
-            addCriterion("learningplancolumn_id =", value, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdEqualTo(Integer value) {
+            addCriterion("learning_plan_column_id =", value, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdNotEqualTo(Integer value) {
-            addCriterion("learningplancolumn_id <>", value, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdNotEqualTo(Integer value) {
+            addCriterion("learning_plan_column_id <>", value, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdGreaterThan(Integer value) {
-            addCriterion("learningplancolumn_id >", value, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdGreaterThan(Integer value) {
+            addCriterion("learning_plan_column_id >", value, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("learningplancolumn_id >=", value, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("learning_plan_column_id >=", value, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdLessThan(Integer value) {
-            addCriterion("learningplancolumn_id <", value, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdLessThan(Integer value) {
+            addCriterion("learning_plan_column_id <", value, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdLessThanOrEqualTo(Integer value) {
-            addCriterion("learningplancolumn_id <=", value, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdLessThanOrEqualTo(Integer value) {
+            addCriterion("learning_plan_column_id <=", value, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdIn(List<Integer> values) {
-            addCriterion("learningplancolumn_id in", values, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdIn(List<Integer> values) {
+            addCriterion("learning_plan_column_id in", values, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdNotIn(List<Integer> values) {
-            addCriterion("learningplancolumn_id not in", values, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdNotIn(List<Integer> values) {
+            addCriterion("learning_plan_column_id not in", values, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdBetween(Integer value1, Integer value2) {
-            addCriterion("learningplancolumn_id between", value1, value2, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdBetween(Integer value1, Integer value2) {
+            addCriterion("learning_plan_column_id between", value1, value2, "learningPlanColumnId");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("learningplancolumn_id not between", value1, value2, "learningplancolumnId");
+        public Criteria andLearningPlanColumnIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("learning_plan_column_id not between", value1, value2, "learningPlanColumnId");
             return (Criteria) this;
         }
     }

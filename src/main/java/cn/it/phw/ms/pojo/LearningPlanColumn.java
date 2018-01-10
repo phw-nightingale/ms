@@ -3,7 +3,7 @@ package cn.it.phw.ms.pojo;
 public class LearningPlanColumn extends BaseEntity {
     private Integer id;
 
-    private String learningplancolumnName;
+    private String learningPlanColumnName;
 
     private String learningplancolumnDesc;
 
@@ -15,12 +15,12 @@ public class LearningPlanColumn extends BaseEntity {
         this.id = id;
     }
 
-    public String getLearningplancolumnName() {
-        return learningplancolumnName;
+    public String getLearningPlanColumnName() {
+        return learningPlanColumnName;
     }
 
-    public void setLearningplancolumnName(String learningplancolumnName) {
-        this.learningplancolumnName = learningplancolumnName == null ? null : learningplancolumnName.trim();
+    public void setLearningPlanColumnName(String learningPlanColumnName) {
+        this.learningPlanColumnName = learningPlanColumnName == null ? null : learningPlanColumnName.trim();
     }
 
     public String getLearningplancolumnDesc() {
