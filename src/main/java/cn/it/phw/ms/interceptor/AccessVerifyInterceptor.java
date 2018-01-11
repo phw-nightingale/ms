@@ -4,11 +4,16 @@ import cn.it.phw.ms.common.AppContext;
 import cn.it.phw.ms.common.Authority;
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.common.JwtUtils;
+import cn.it.phw.ms.pojo.Resource;
+import cn.it.phw.ms.pojo.ResourceExample;
+import cn.it.phw.ms.service.ResourceService;
 import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -23,9 +28,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.util.List;
 
 @Component
 public class AccessVerifyInterceptor implements HandlerInterceptor {
+
+    private static final Logger log = LoggerFactory.getLogger(AccessVerifyInterceptor.class);
 
     @Autowired
     private Gson gson;
@@ -34,6 +42,9 @@ public class AccessVerifyInterceptor implements HandlerInterceptor {
     private StringRedisTemplate redisTemplate;
 
     private String uid = "";
+
+    @Autowired
+    private ResourceService resourceService;
 
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object handler) throws Exception {
@@ -64,8 +75,8 @@ public class AccessVerifyInterceptor implements HandlerInterceptor {
                         exportJsonResult(httpServletResponse, loginResult);
                         return false;
                     }
-                    /*JsonResult actionResult = verifyAction();
-                    if (actionResult.getStatus() == 500) {
+                    JsonResult actionResult = verifyAction(httpServletRequest);
+                    /*if (actionResult.getStatus() == 500) {
                         exportJsonResult(httpServletResponse, actionResult);
                         return false;
                     }*/
@@ -165,7 +176,35 @@ public class AccessVerifyInterceptor implements HandlerInterceptor {
      *
      * @return
      */
-    private JsonResult verifyAction() {
+    private JsonResult verifyAction(HttpServletRequest request) {
+
+        String uri = request.getRequestURI();
+        log.info(uri);
+        String resourceName = "";
+        Integer mark_one = uri.indexOf("/", 1);
+        Integer mark_two = uri.indexOf("/", 2);
+        log.info(mark_one + " 1");
+        log.info(mark_two + " 2");
+        if (mark_two != mark_one) {
+            resourceName = uri.substring(mark_one + 1, mark_two);
+        } else {
+            resourceName = uri.substring(mark_one + 1);
+        }
+        if (resourceName.lastIndexOf("s") != -1) {
+            resourceName = resourceName.substring(0, resourceName.length() - 2);
+        }
+        log.info(resourceName);
+        ResourceExample example = new ResourceExample();
+        example.or().andNameEqualTo(resourceName);
+        JsonResult jsonResultOfResource = resourceService.selectByExample(example);
+        if (jsonResultOfResource.getStatus() == 200) {
+            Resource resource = ((List<Resource>) (jsonResultOfResource.getData().get(AppContext.KEY_DATA))).get(0);
+
+
+        } else {
+            return jsonResultOfResource;
+        }
+
 
         return new JsonResult();
     }
