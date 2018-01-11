@@ -1,8 +1,10 @@
 package cn.it.phw.ms.controller;
 
 import cn.it.phw.ms.common.JsonResult;
+import cn.it.phw.ms.pojo.LearningPlanColumn;
 import cn.it.phw.ms.pojo.LearningPlanColumnManager;
 import cn.it.phw.ms.pojo.LearningPlanColumnManagerExample;
+import cn.it.phw.ms.pojo.LearningPlanForm;
 import cn.it.phw.ms.service.BaseService;
 import cn.it.phw.ms.service.LearningPlanColumnManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,10 @@ public class LearningPlanColumnManagerController extends BaseController {
     private LearningPlanColumnManagerExample example = new LearningPlanColumnManagerExample();
 
     @ResponseBody
-    @GetMapping("/column-manager")
-    public JsonResult findLearningPlanColumnManagerByFormId(@RequestParam Integer planFormId) {
+    @GetMapping("/column-manager/form-id")
+    public JsonResult findLearningPlanColumnManagerByFormId(@RequestParam Integer formId) {
         LearningPlanColumnManagerExample.Criteria criteria = example.or();
-        criteria.andLearningPlanFormIdEqualTo(planFormId);
+        criteria.andLearningPlanFormIdEqualTo(formId);
         return learningPlanColumnManagerService.selectByExampleWithBLOBs(example);
     }
 

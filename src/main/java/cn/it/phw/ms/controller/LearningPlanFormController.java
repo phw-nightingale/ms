@@ -1,12 +1,16 @@
 package cn.it.phw.ms.controller;
 
+import cn.it.phw.ms.common.AppContext;
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.pojo.LearningPlanForm;
+import cn.it.phw.ms.pojo.LearningPlanFormExample;
 import cn.it.phw.ms.service.BaseService;
 import cn.it.phw.ms.service.LearningPlanFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/ms")
@@ -40,9 +44,12 @@ public class LearningPlanFormController extends BaseController {
     }
 
     @ResponseBody
-    @GetMapping("/plan-form")
-    public JsonResult findLearningPlanFormByExample(LearningPlanForm form) {
-        return null;
+    @GetMapping("/plan-form/owner")
+    public JsonResult findLearningPlanFormByExample(HttpServletRequest request) {
+        LearningPlanFormExample example = new LearningPlanFormExample();
+        String uid = (String) request.getAttribute(AppContext.KEY_ID);
+        example.or().andOwnerIdEqualTo(Integer.valueOf(uid));
+        return learningPlanFormService.selectByExample(example);
     }
 
     @ResponseBody

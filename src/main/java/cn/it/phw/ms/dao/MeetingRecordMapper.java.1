@@ -1,0 +1,36 @@
+package cn.it.phw.ms.dao;
+
+import cn.it.phw.ms.pojo.MeetingRecord;
+import cn.it.phw.ms.pojo.MeetingRecordExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface MeetingRecordMapper {
+    long countByExample(MeetingRecordExample example);
+
+    int deleteByExample(MeetingRecordExample example);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(MeetingRecord record);
+
+    int insertSelective(MeetingRecord record);
+
+    List<MeetingRecord> selectByExampleWithBLOBs(MeetingRecordExample example);
+
+    List<MeetingRecord> selectByExample(MeetingRecordExample example);
+
+    MeetingRecord selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") MeetingRecord record, @Param("example") MeetingRecordExample example);
+
+    int updateByExampleWithBLOBs(@Param("record") MeetingRecord record, @Param("example") MeetingRecordExample example);
+
+    int updateByExample(@Param("record") MeetingRecord record, @Param("example") MeetingRecordExample example);
+
+    int updateByPrimaryKeySelective(MeetingRecord record);
+
+    int updateByPrimaryKeyWithBLOBs(MeetingRecord record);
+
+    int updateByPrimaryKey(MeetingRecord record);
+}

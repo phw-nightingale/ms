@@ -234,73 +234,73 @@ public class LearningPlanColumnExample extends BaseExample {
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescIsNull() {
-            addCriterion("learningplancolumn_desc is null");
+        public Criteria andLearningPlanColumnDescIsNull() {
+            addCriterion("learning_plan_column_desc is null");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescIsNotNull() {
-            addCriterion("learningplancolumn_desc is not null");
+        public Criteria andLearningPlanColumnDescIsNotNull() {
+            addCriterion("learning_plan_column_desc is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescEqualTo(String value) {
-            addCriterion("learningplancolumn_desc =", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescEqualTo(String value) {
+            addCriterion("learning_plan_column_desc =", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescNotEqualTo(String value) {
-            addCriterion("learningplancolumn_desc <>", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescNotEqualTo(String value) {
+            addCriterion("learning_plan_column_desc <>", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescGreaterThan(String value) {
-            addCriterion("learningplancolumn_desc >", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescGreaterThan(String value) {
+            addCriterion("learning_plan_column_desc >", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescGreaterThanOrEqualTo(String value) {
-            addCriterion("learningplancolumn_desc >=", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescGreaterThanOrEqualTo(String value) {
+            addCriterion("learning_plan_column_desc >=", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescLessThan(String value) {
-            addCriterion("learningplancolumn_desc <", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescLessThan(String value) {
+            addCriterion("learning_plan_column_desc <", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescLessThanOrEqualTo(String value) {
-            addCriterion("learningplancolumn_desc <=", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescLessThanOrEqualTo(String value) {
+            addCriterion("learning_plan_column_desc <=", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescLike(String value) {
-            addCriterion("learningplancolumn_desc like", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescLike(String value) {
+            addCriterion("learning_plan_column_desc like", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescNotLike(String value) {
-            addCriterion("learningplancolumn_desc not like", value, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescNotLike(String value) {
+            addCriterion("learning_plan_column_desc not like", value, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescIn(List<String> values) {
-            addCriterion("learningplancolumn_desc in", values, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescIn(List<String> values) {
+            addCriterion("learning_plan_column_desc in", values, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescNotIn(List<String> values) {
-            addCriterion("learningplancolumn_desc not in", values, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescNotIn(List<String> values) {
+            addCriterion("learning_plan_column_desc not in", values, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescBetween(String value1, String value2) {
-            addCriterion("learningplancolumn_desc between", value1, value2, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescBetween(String value1, String value2) {
+            addCriterion("learning_plan_column_desc between", value1, value2, "learningPlanColumnDesc");
             return (Criteria) this;
         }
 
-        public Criteria andLearningplancolumnDescNotBetween(String value1, String value2) {
-            addCriterion("learningplancolumn_desc not between", value1, value2, "learningplancolumnDesc");
+        public Criteria andLearningPlanColumnDescNotBetween(String value1, String value2) {
+            addCriterion("learning_plan_column_desc not between", value1, value2, "learningPlanColumnDesc");
             return (Criteria) this;
         }
     }

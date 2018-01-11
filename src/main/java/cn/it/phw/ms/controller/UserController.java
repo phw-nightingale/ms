@@ -25,7 +25,7 @@ public class UserController extends BaseController {
 
     @ResponseBody
     @PostMapping("/login")
-    @Authority(AuthorityType.NoValidate) 
+    @Authority(AuthorityType.NoValidate)
     public JsonResult doLogin(String username, String password) {
         return userService.doLogin(username, password);
     }

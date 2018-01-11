@@ -5,7 +5,7 @@ public class LearningPlanColumn extends BaseEntity {
 
     private String learningPlanColumnName;
 
-    private String learningplancolumnDesc;
+    private String learningPlanColumnDesc;
 
     public Integer getId() {
         return id;
@@ -23,11 +23,11 @@ public class LearningPlanColumn extends BaseEntity {
         this.learningPlanColumnName = learningPlanColumnName == null ? null : learningPlanColumnName.trim();
     }
 
-    public String getLearningplancolumnDesc() {
-        return learningplancolumnDesc;
+    public String getLearningPlanColumnDesc() {
+        return learningPlanColumnDesc;
     }
 
-    public void setLearningplancolumnDesc(String learningplancolumnDesc) {
-        this.learningplancolumnDesc = learningplancolumnDesc == null ? null : learningplancolumnDesc.trim();
+    public void setLearningPlanColumnDesc(String learningPlanColumnDesc) {
+        this.learningPlanColumnDesc = learningPlanColumnDesc == null ? null : learningPlanColumnDesc.trim();
     }
 }

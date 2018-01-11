@@ -1,0 +1,30 @@
+package cn.it.phw.ms.dao;
+
+import cn.it.phw.ms.pojo.LearningPlanForm;
+import cn.it.phw.ms.pojo.LearningPlanFormExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface LearningPlanFormMapper {
+    long countByExample(LearningPlanFormExample example);
+
+    int deleteByExample(LearningPlanFormExample example);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(LearningPlanForm record);
+
+    int insertSelective(LearningPlanForm record);
+
+    List<LearningPlanForm> selectByExample(LearningPlanFormExample example);
+
+    LearningPlanForm selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") LearningPlanForm record, @Param("example") LearningPlanFormExample example);
+
+    int updateByExample(@Param("record") LearningPlanForm record, @Param("example") LearningPlanFormExample example);
+
+    int updateByPrimaryKeySelective(LearningPlanForm record);
+
+    int updateByPrimaryKey(LearningPlanForm record);
+}

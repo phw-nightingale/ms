@@ -1,0 +1,30 @@
+package cn.it.phw.ms.dao;
+
+import cn.it.phw.ms.pojo.LearningPlanColumn;
+import cn.it.phw.ms.pojo.LearningPlanColumnExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface LearningPlanColumnMapper {
+    long countByExample(LearningPlanColumnExample example);
+
+    int deleteByExample(LearningPlanColumnExample example);
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(LearningPlanColumn record);
+
+    int insertSelective(LearningPlanColumn record);
+
+    List<LearningPlanColumn> selectByExample(LearningPlanColumnExample example);
+
+    LearningPlanColumn selectByPrimaryKey(Integer id);
+
+    int updateByExampleSelective(@Param("record") LearningPlanColumn record, @Param("example") LearningPlanColumnExample example);
+
+    int updateByExample(@Param("record") LearningPlanColumn record, @Param("example") LearningPlanColumnExample example);
+
+    int updateByPrimaryKeySelective(LearningPlanColumn record);
+
+    int updateByPrimaryKey(LearningPlanColumn record);
+}
