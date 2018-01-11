@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController extends BaseController {
 
     @Autowired
-    private UserService userService;
+    private UserService userService; 
 
     @ResponseBody
     @PostMapping("/login")
