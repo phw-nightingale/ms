@@ -2,6 +2,7 @@ package cn.it.phw.ms.controller;
 
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.pojo.LearningPlanForm;
+import cn.it.phw.ms.service.BaseService;
 import cn.it.phw.ms.service.LearningPlanFormService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,12 @@ public class LearningPlanFormController extends BaseController {
     @GetMapping("/plan-form/{id}")
     public JsonResult findLearningPlanFormById(@PathVariable Integer id) {
         return learningPlanFormService.selectByPrimaryKey(id);
+    }
+
+    @ResponseBody
+    @GetMapping("/plan-form")
+    public JsonResult findLearningPlanFormByExample(LearningPlanForm form) {
+        return null;
     }
 
     @ResponseBody

@@ -22,8 +22,11 @@ public class JwtUtils {
         encode_secret = apiKey.getEncoded();
         File file = new File(_dir + "private.key");
         if (!file.exists()) {
-            file.createNewFile();
-            logger.error("success create new file 'private.key' in " + file.getAbsolutePath());
+            if (file.createNewFile()) {
+                logger.info("秘钥文件创建成功 'private.key' in " + file.getAbsolutePath());
+            } else {
+                throw new IOException("秘钥文件创建失败");
+            }
         }
         FileUtils.writeByteArrayToFile(file, encode_secret);
 

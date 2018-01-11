@@ -2,6 +2,7 @@ package cn.it.phw.ms.service.impl;
 
 import cn.it.phw.ms.common.AppContext;
 import cn.it.phw.ms.common.JsonResult;
+import cn.it.phw.ms.common.ReflectionHelper;
 import cn.it.phw.ms.dao.BaseMapper;
 import cn.it.phw.ms.pojo.BaseEntity;
 import cn.it.phw.ms.pojo.BaseExample;
@@ -23,8 +24,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
     JsonResult jsonResult;
     Map<String, Object> data;
 
-    BaseServiceImpl() {
-
+    public BaseServiceImpl() {
         jsonResult = new JsonResult();
         data = new HashMap<>();
     }
@@ -43,6 +43,14 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
             jsonResult.setStatus(500);
             jsonResult.setMessage("参数错误");
         }
+
+        if (!(id instanceof String)) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("参数类型错误");
+        } else {
+            id = Integer.valueOf((String) id);
+        }
+
         T item = getBaseMapper().selectByPrimaryKey(id);
         if (item == null) {
             jsonResult.setMessage("无对应记录");
@@ -59,7 +67,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
     @Override
     public JsonResult selectByExample(BaseExample example) {
 
-        List<T> items = getBaseMapper().selectByExample(example);
+        List<T> items = getBaseMapper().selectByExample(null);
 
         if (items.size() == 0) {
             jsonResult.setMessage("无对应记录");

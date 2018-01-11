@@ -1,19 +1,24 @@
 package cn.it.phw.ms.common;
 
+import cn.it.phw.ms.dao.BaseMapper;
 import cn.it.phw.ms.pojo.BaseEntity;
+import cn.it.phw.ms.pojo.BaseExample;
+import cn.it.phw.ms.pojo.User;
+import cn.it.phw.ms.pojo.UserExample;
+import cn.it.phw.ms.service.BaseService;
+import cn.it.phw.ms.service.impl.BaseServiceImpl;
+import com.sun.xml.internal.rngom.parse.host.Base;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 
 /**
  * 反射工具类
  *
  * @author phw
  */
-public class ReflectionHelper {
+public class ReflectionHelper<T> {
 
     private static final Logger logger = LogManager.getLogger(ReflectionHelper.class);
 
@@ -95,7 +100,6 @@ public class ReflectionHelper {
         }
         Type[] params = ((ParameterizedType) genericType).getActualTypeArguments();
 
-
         if(index>=params.length || index < 0){
             logger.warn("Index:"+index+",size of "+clazz.getSimpleName()+"'s Parameterize Type:"+params.length);
             return Object.class;
@@ -106,6 +110,49 @@ public class ReflectionHelper {
         return (Class)params[index];
     }
 
+    public static Class<?> getClassGenericType(final Class<?> clazz) {
+        Type type = clazz.getGenericSuperclass();
+        if (type instanceof ParameterizedType) {
+            return (Class<?>) ((ParameterizedType) type).getActualTypeArguments()[0];
+        } else {
+            return Object.class;
+        }
+    }
+
+    public BaseExample getExampleByItem(Class<?> clazz, T record, BaseExampleOptions opt)
+            throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException,
+                                            InstantiationException, InvocationTargetException {
+
+        Class<?> cls = getClassGenericType(clazz);
+        String exampleName = cls.getName() + "Example";
+        String criteriaName = exampleName + ".Criteria";
+        System.out.println(criteriaName);
+        Class<?> exampleClass = Class.forName(exampleName);
+        BaseExample example = (BaseExample) exampleClass.newInstance();
+        Method method = exampleClass.getMethod("or");
+        Object criteria = method.invoke(example);
+        Class<?> criteriaClass = criteria.getClass();
+        Field[] fieldsOfRecord = record.getClass().getDeclaredFields();
+        Method[] methodsOfCriteria = criteriaClass.getMethods();
+
+        for (Field field: fieldsOfRecord) {
+            field.setAccessible(true);
+            Object param = field.get(record);
+            if (param != null) {
+                String fieldName = (field.getName().substring(0, 1).toUpperCase()) + (field.getName().substring(1));
+                StringBuilder methodName = new StringBuilder();
+                methodName.append("and")
+                        .append(fieldName)
+                        .append(opt);
+                System.out.println(methodName.toString());
+                Method methodOfCriteria = criteria.getClass().getDeclaredMethod(methodName.toString());
+                System.out.println(methodOfCriteria.getName());
+            }
+        }
+
+        return example;
+    }
+
 
     /**
      * Test
@@ -114,9 +161,24 @@ public class ReflectionHelper {
      */
     public static void main(String[] args) {
 
-        BaseEntity entity = new BaseEntity();
-        Class<?> clazz = getSuperClassGenericType(entity.getClass(), 1);
-        System.out.println(clazz.getSimpleName());
+        BaseService<User> baseService = new BaseServiceImpl<User>() {
+            @Override
+            public BaseMapper<User> getBaseMapper() {
+                return null;
+            }
+        };
+
+        ReflectionHelper<User> helper = new ReflectionHelper<>();
+
+        User user = new User();
+        user.setId(1);
+        user.setUsername("admin1");
+        try {
+            BaseExample example = helper.getExampleByItem(baseService.getClass(), user, BaseExampleOptions.EqualTo);
+            System.out.println(example);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

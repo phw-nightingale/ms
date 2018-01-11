@@ -7,6 +7,8 @@ public class LearningPlanColumnManager extends BaseEntity {
 
     private Integer learningPlanColumnId;
 
+    private String learningPlanColumnName;
+
     private String learningPlanColumnContent;
 
     public Integer getId() {
@@ -31,6 +33,14 @@ public class LearningPlanColumnManager extends BaseEntity {
 
     public void setLearningPlanColumnId(Integer learningPlanColumnId) {
         this.learningPlanColumnId = learningPlanColumnId;
+    }
+
+    public String getLearningPlanColumnName() {
+        return learningPlanColumnName;
+    }
+
+    public void setLearningPlanColumnName(String learningPlanColumnName) {
+        this.learningPlanColumnName = learningPlanColumnName == null ? null : learningPlanColumnName.trim();
     }
 
     public String getLearningPlanColumnContent() {

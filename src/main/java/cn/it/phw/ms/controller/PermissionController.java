@@ -2,6 +2,7 @@ package cn.it.phw.ms.controller;
 
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.pojo.Permission;
+import cn.it.phw.ms.service.BaseService;
 import cn.it.phw.ms.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

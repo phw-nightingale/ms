@@ -4,7 +4,10 @@ import cn.it.phw.ms.common.AppContext;
 import cn.it.phw.ms.common.Authority;
 import cn.it.phw.ms.common.AuthorityType;
 import cn.it.phw.ms.common.JsonResult;
+import cn.it.phw.ms.pojo.BookExample;
 import cn.it.phw.ms.pojo.User;
+import cn.it.phw.ms.pojo.UserExample;
+import cn.it.phw.ms.service.BaseService;
 import cn.it.phw.ms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -70,5 +73,10 @@ public class UserController extends BaseController {
         return userService.deleteByPrimaryKey(id);
     }
 
+    @ResponseBody
+    @GetMapping("/user/now")
+    public JsonResult findCurrUser(HttpServletRequest request) {
+        return userService.selectByPrimaryKey(request.getAttribute(AppContext.KEY_ID));
+    }
 
 }

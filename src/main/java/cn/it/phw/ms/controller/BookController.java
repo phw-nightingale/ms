@@ -3,6 +3,7 @@ package cn.it.phw.ms.controller;
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.pojo.Book;
 import cn.it.phw.ms.pojo.BookExample;
+import cn.it.phw.ms.service.BaseService;
 import cn.it.phw.ms.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,15 +26,6 @@ public class BookController extends BaseController {
     @GetMapping("/books")
     public JsonResult findAllBooks() {
         return bookService.selectByExample(null);
-    }
-
-    @ResponseBody
-    @GetMapping("/book")
-    public JsonResult findBookByExample(@RequestParam Integer id) {
-        BookExample example = new BookExample();
-        BookExample.Criteria criteria = example.or();
-        criteria.andIdEqualTo(id);
-        return bookService.selectByExample(example);
     }
 
     @ResponseBody
