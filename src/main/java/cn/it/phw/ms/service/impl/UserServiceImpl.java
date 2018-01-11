@@ -123,7 +123,6 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         Object adminJson = redisTemplate.opsForHash().get(AppContext.USER_CACHE, adminId);
         User admin = gson.fromJson((String) adminJson, User.class);
 
-        user.setCreateTime(new Date(System.currentTimeMillis()));
         user.setCreatorId(admin.getId());
         user.setCreatorName(admin.getUsername());
         user.setSalt(System.currentTimeMillis() + "");

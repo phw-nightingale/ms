@@ -23,9 +23,4 @@ public class BookServiceImpl extends BaseServiceImpl<Book> implements BookServic
         return bookMapper;
     }
 
-    @Override
-    public JsonResult insert(Book item) {
-        item.setCreateTime(new Date(System.currentTimeMillis()));
-        return super.insert(item);
-    }
 }

@@ -23,9 +23,4 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
         return roleMapper;
     }
 
-    @Override
-    public JsonResult insert(Role item) {
-        item.setCreateTime(new Date(System.currentTimeMillis()));
-        return super.insert(item);
-    }
 }
