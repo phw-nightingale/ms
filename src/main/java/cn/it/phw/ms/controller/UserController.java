@@ -21,11 +21,11 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController extends BaseController {
 
     @Autowired
-    private UserService userService; 
+    private UserService userService;
 
     @ResponseBody
     @PostMapping("/login")
-    @Authority(AuthorityType.NoValidate)
+    @Authority(AuthorityType.NoValidate) 
     public JsonResult doLogin(String username, String password) {
         return userService.doLogin(username, password);
     }
