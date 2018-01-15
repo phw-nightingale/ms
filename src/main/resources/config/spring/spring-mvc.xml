@@ -20,7 +20,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="cn.it.phw.ms.interceptor.AccessVerifyInterceptor"/>
+            <bean class="cn.it.phw.ms.interceptor.AccessTokenInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
