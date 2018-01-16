@@ -3,9 +3,9 @@ package cn.it.phw.ms.interceptor;
 import cn.it.phw.ms.common.AppContext;
 import cn.it.phw.ms.common.JsonResult;
 import cn.it.phw.ms.common.JwtUtils;
+import cn.it.phw.ms.pojo.User;
 import com.google.gson.Gson;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class AccessTokenInterceptor implements HandlerInterceptor {
@@ -29,9 +31,35 @@ public class AccessTokenInterceptor implements HandlerInterceptor {
     @Autowired
     private Gson gson;
 
+    private JsonResult jsonResult = new JsonResult();
+
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
-        verifyLogin(httpServletRequest, httpServletResponse);
+        String token = httpServletRequest.getHeader(AppContext.AUTHORIZATION);
+        if (StringUtils.isEmpty(token)) {
+            token = httpServletRequest.getParameter("token");
+        }
+        if (StringUtils.isEmpty(token)) {
+            jsonResult.setStatus(500);
+            jsonResult.setMessage("您还没有登录，请先登录。");
+            exportJsonResult(httpServletResponse, jsonResult);
+        } else {
+            try {
+                Claims claims = JwtUtils.parseJWT(token);
+                String uid = claims.getId();
+
+                if (redisTemplate.opsForHash().hasKey(AppContext.USER_CACHE, uid)) {
+                    httpServletRequest.setAttribute(AppContext.KEY_ID, uid);
+                    return true;
+                }
+
+            } catch (SignatureException | MalformedJwtException e) {
+                jsonResult.setStatus(500);
+                jsonResult.setMessage("身份信息异常，请重新登录！");
+                exportJsonResult(httpServletResponse, jsonResult);
+            }
+        }
+
         return false;
     }
 
@@ -43,54 +71,6 @@ public class AccessTokenInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
 
-    }
-
-    /**
-     *
-     * @param httpServletRequest
-     * @param httpServletResponse
-     * @return
-     * @throws IOException
-     */
-    private JsonResult verifyLogin(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException {
-        JsonResult jsonResult = new JsonResult();
-
-        String authorization = httpServletRequest.getHeader(AppContext.AUTHORIZATION);
-        if (StringUtils.isEmpty(authorization)) {
-            authorization = httpServletRequest.getParameter("token");
-        }
-
-        if (StringUtils.isEmpty(authorization)) {
-            jsonResult.setStatus(500);
-            jsonResult.setMessage("Error: Login First Please");
-            exportJsonResult(httpServletResponse, jsonResult);
-        } else {
-            try {
-                Claims claims = JwtUtils.parseJWT(authorization);
-                String uid = claims.getId();
-
-                if (redisTemplate.opsForHash().hasKey(AppContext.USER_CACHE, uid)) {
-                    httpServletRequest.setAttribute(AppContext.KEY_ID, uid);
-                    //logger.info(httpServletRequest.getMethod() + ":" + httpServletRequest.getRequestURL().toString());
-                    jsonResult.setStatus(200);
-                    jsonResult.setMessage("OK");
-                } else {
-                    jsonResult.setStatus(500);
-                    jsonResult.setMessage("Error: Login First Please");
-                }
-            } catch (SignatureException | MalformedJwtException e) {
-                jsonResult.setStatus(500);
-                jsonResult.setMessage("Error: Login Error, Retry Please");
-                return jsonResult;
-            } catch (ExpiredJwtException e) {
-                jsonResult.setStatus(500);
-                jsonResult.setMessage("Error: Login Info Timed out");
-                return jsonResult;
-            }
-
-        }
-
-        return jsonResult;
     }
 
     /**

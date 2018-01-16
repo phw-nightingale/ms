@@ -67,7 +67,7 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
     @Override
     public JsonResult selectByExample(BaseExample example) {
 
-        List<T> items = getBaseMapper().selectByExample(null);
+        List<T> items = getBaseMapper().selectByExample(example);
 
         if (items.size() == 0) {
             jsonResult.setMessage("无对应记录");

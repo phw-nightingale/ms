@@ -26,7 +26,7 @@ public class ResourceServiceImpl extends BaseServiceImpl<Resource> implements Re
 
     @Override
     public JsonResult insert(Resource item) {
-        item.setIdentity(UUID.randomUUID().toString() + UUID.randomUUID().toString());
+        item.setIdentity(UUID.randomUUID().toString());
         return super.insert(item);
     }
 }

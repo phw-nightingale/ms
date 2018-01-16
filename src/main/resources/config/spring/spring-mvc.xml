@@ -20,7 +20,21 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/**/login"/>
+            <mvc:exclude-mapping path="/**/msg/lasted"/>
             <bean class="cn.it.phw.ms.interceptor.AccessTokenInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/**/login"/>
+            <mvc:exclude-mapping path="/**/msg/lasted"/>
+            <bean class="cn.it.phw.ms.interceptor.AccessResourceInterceptor"/>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/**/login"/>
+            <mvc:exclude-mapping path="/**/msg/lasted"/>
+            <bean class="cn.it.phw.ms.interceptor.AccessPermissionInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
